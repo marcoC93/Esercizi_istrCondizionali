@@ -13,9 +13,27 @@ import java.util.Scanner;
 public class Data {
 	public static void main(String[] args) {
 	
+		
+		
+//		Qui faccio inserire i valori all'utente
 		Scanner s = new Scanner(System.in) ;
 		
-		String dataUtente = s.nextLine();
+//		giorno
+		System.out.println("Inserisci il giorno");
 		
+		int giornoUtente = s.nextInt();
+		
+		System.out.println("Il giorno é : " + giornoUtente);
+		
+//		mese
+		System.out.println("Inserisci il mese");
+				
+		
+		int meseUtente = s.nextInt();
+		if (meseUtente > 12 ) {
+			System.out.println("Input non valido inserisci un valore tra 1 e 12");
+			 meseUtente = s.nextInt();
+		}
+		System.out.println("Il mese é : " + meseUtente);
 	}
 }

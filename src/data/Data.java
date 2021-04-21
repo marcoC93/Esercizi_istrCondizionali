@@ -17,23 +17,52 @@ public class Data {
 		
 //		Qui faccio inserire i valori all'utente
 		Scanner s = new Scanner(System.in) ;
-		
-//		giorno
-		System.out.println("Inserisci il giorno");
-		
-		int giornoUtente = s.nextInt();
-		
-		System.out.println("Il giorno é : " + giornoUtente);
-		
+
 //		mese
 		System.out.println("Inserisci il mese");
 				
 		
 		int meseUtente = s.nextInt();
-		if (meseUtente > 12 ) {
+		
+		while (meseUtente > 12  || meseUtente < 0 ) {
 			System.out.println("Input non valido inserisci un valore tra 1 e 12");
 			 meseUtente = s.nextInt();
 		}
+
+		
+		
+		
+//		giorno
+		System.out.println("Inserisci il giorno");
+		int giornoUtente = s.nextInt();
+		switch (meseUtente) {
+		case 2: {
+			
+			while ( giornoUtente < 0 || giornoUtente >28  ) {
+				System.out.println("Data inserita non corretta inserisci un valore tra 1 e 28");
+				giornoUtente = s.nextInt();
+			}
+		}
+		case 1,3,5,7,8,10,12 :{
+			while ( giornoUtente < 0 || giornoUtente >31  ) {
+				System.out.println("Data inserita non corretta inserisci un valore tra 1 e 31");
+				giornoUtente = s.nextInt();
+			}
+		}
+		case 4,6,9,11 : {
+			while ( giornoUtente < 0 || giornoUtente > 30  ) {
+				System.out.println("Data inserita non corretta inserisci un valore tra 1 e 30");
+				giornoUtente = s.nextInt();
+			}
+		}
+			 
+		
+			
+		}
+		
+		
+		System.out.println("Il giorno é : " + giornoUtente);
+		
 		System.out.println("Il mese é : " + meseUtente);
 	}
 }

@@ -30,10 +30,13 @@ public class Data {
 //		Qui faccio inserire i valori all'utente
 		Scanner s = new Scanner(System.in) ;
 
-//		mese
-		System.out.println("Inserisci il mese");
-				
+		System.out.println("Calcolatore giorni trascorsi dall'inizio dell' anno");
 		
+//		mese
+		System.out.println("Inserisci il mese ");
+		
+		
+//		Qui si puó inserire il mese da calcolre 
 		 meseUtente = s.nextInt();
 		
 		while (meseUtente > 12  || meseUtente < 0 ) {
@@ -44,7 +47,9 @@ public class Data {
 		
 		
 		
-//		giorno
+		/*		Qui si puó inserire il giorno da calcolare in base al mese inserito dall'utente verranno effettuati dei controlli, tramite ciclo while, per verificare 
+        Se il giorno inserito faccia effettivamente parte del mese in questione considerato che non tutti i mesi finiscano allo stesso mose e le varie casistiche 
+        le quali verranno gestite tramite uno Switchcase 	*/		
 		
 		System.out.println("Inserisci il giorno");
 		giornoUtente = s.nextInt();
@@ -72,15 +77,21 @@ public class Data {
 				}
 			}
 		}
+		
 //		System.out.println("Il giorno é : " + giornoUtente);
 		
 //		System.out.println("Il mese é : " + meseUtente);
 		
+//		qui riassegno il valore delle variabile dataUtente con i valori  mese e giorno inseriti dall'utente tenendo conto dello "standard"
 		localDateUtente = LocalDate.of(annoDefault, meseUtente,giornoUtente );
 		
 		System.out.println("Data inserta dall'utente: " + localDateUtente);
+		
+/*		Tramite la classe ChronoUnit posso effettuare il calcolo tra il giorno inserito dall'utente e l'inizio dell'anno inserendo le variabili
+		come parametri necessari per il calcolo */
+		
 		int days = (int) ChronoUnit.DAYS.between(localDateDefault,localDateUtente);
 
-		System.out.println("Dall'inizio dell anno sono passati:" + days + " giorni");
+		System.out.println("Dall'inizio dell anno sono passati: " + days + " giorni");
 	}
 }

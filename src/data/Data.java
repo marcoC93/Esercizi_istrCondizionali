@@ -8,11 +8,23 @@
 
 package data;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Data {
 	public static void main(String[] args) {
 	
+//		Dichiaro le variabili 
+		int annoDefault = 2021 ;
+		int giornoDefault = 1;
+		int meseDefault = 1;
+		int meseUtente = 1 ;
+		int giornoUtente = 1 ;
+		LocalDate localDateDefault = LocalDate.of(annoDefault,meseDefault,giornoDefault);
+		LocalDate localDateUtente = LocalDate.of(annoDefault, giornoUtente, meseUtente);
 		
 		
 //		Qui faccio inserire i valori all'utente
@@ -22,7 +34,7 @@ public class Data {
 		System.out.println("Inserisci il mese");
 				
 		
-		int meseUtente = s.nextInt();
+		 meseUtente = s.nextInt();
 		
 		while (meseUtente > 12  || meseUtente < 0 ) {
 			System.out.println("Input non valido inserisci un valore tra 1 e 12");
@@ -33,36 +45,42 @@ public class Data {
 		
 		
 //		giorno
+		
 		System.out.println("Inserisci il giorno");
-		int giornoUtente = s.nextInt();
+		giornoUtente = s.nextInt();
 		switch (meseUtente) {
-		case 2: {
-			
-			while ( giornoUtente < 0 || giornoUtente >28  ) {
-				System.out.println("Data inserita non corretta inserisci un valore tra 1 e 28");
-				giornoUtente = s.nextInt();
+//		Questa é la casistica del mese di Febbraio
+			case 2: {
+				
+				while ( giornoUtente < 0 || giornoUtente >28  ) {
+					System.out.println("Data inserita non corretta inserisci un valore tra 1 e 28");
+					giornoUtente = s.nextInt();
+				}
+//				Qui tengo conto di tutti i mesi che terminano il 31 
+			}
+			case 1,3,5,7,8,10,12 :{
+				while ( giornoUtente < 0 || giornoUtente >31  ) {
+					System.out.println("Data inserita non corretta inserisci un valore tra 1 e 31");
+					giornoUtente = s.nextInt();
+				}
+			}
+//			Qui tengo conto di tutti i mesi che terminano il 30
+			case 4,6,9,11 : {
+				while ( giornoUtente < 0 || giornoUtente > 30  ) {
+					System.out.println("Data inserita non corretta inserisci un valore tra 1 e 30");
+					giornoUtente = s.nextInt();
+				}
 			}
 		}
-		case 1,3,5,7,8,10,12 :{
-			while ( giornoUtente < 0 || giornoUtente >31  ) {
-				System.out.println("Data inserita non corretta inserisci un valore tra 1 e 31");
-				giornoUtente = s.nextInt();
-			}
-		}
-		case 4,6,9,11 : {
-			while ( giornoUtente < 0 || giornoUtente > 30  ) {
-				System.out.println("Data inserita non corretta inserisci un valore tra 1 e 30");
-				giornoUtente = s.nextInt();
-			}
-		}
-			 
+//		System.out.println("Il giorno é : " + giornoUtente);
 		
-			
-		}
+//		System.out.println("Il mese é : " + meseUtente);
 		
+		localDateUtente = LocalDate.of(annoDefault, meseUtente,giornoUtente );
 		
-		System.out.println("Il giorno é : " + giornoUtente);
-		
-		System.out.println("Il mese é : " + meseUtente);
+		System.out.println("Data inserta dall'utente: " + localDateUtente);
+		int days = (int) ChronoUnit.DAYS.between(localDateDefault,localDateUtente);
+
+		System.out.println("Dall'inizio dell anno sono passati:" + days + " giorni");
 	}
 }
